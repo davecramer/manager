@@ -50,6 +50,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="grails-2.1.1" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="com.jcraft:jsch:0.1.49" level="project" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (manager-grailsPlugins)">
         <CLASSES>
