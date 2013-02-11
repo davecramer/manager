@@ -1,0 +1,7 @@
+Testsuite: com.xtuple.InstanceServiceTests
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.697 sec
+------------- Standard Error -----------------
+--Output from testAddInstance--
+------------- ---------------- ---------------
+
+Testcase: testAddInstance took 0.678 sec
