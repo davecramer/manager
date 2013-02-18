@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" hostname="daveimac" id="0" name="InstanceServiceTests" package="com.xtuple" tests="1" time="0.697" timestamp="2013-02-11T15:17:55">
+  <testsuite errors="0" failures="0" hostname="daveimac" id="0" name="InstanceServiceTests" package="com.xtuple" tests="1" time="0.44" timestamp="2013-02-18T20:17:44">
       <properties />
 
-      <testcase classname="com.xtuple.InstanceServiceTests" name="testAddInstance" time="0.678" />
+      <testcase classname="com.xtuple.InstanceServiceTests" name="testAddInstance" time="0.428" />
 
       <system-out><![CDATA[]]></system-out>
 

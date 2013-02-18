@@ -1,9 +1,9 @@
 package com.xtuple
 
-class DatabaseServer
+class DatabaseServer extends Server
 {
-  String ipAddress
   Boolean master=false
+  static hasMany = [organizations:Organization]
 
   static constraints = {
   }

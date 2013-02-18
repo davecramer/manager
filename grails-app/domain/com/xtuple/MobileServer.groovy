@@ -1,10 +1,12 @@
 package com.xtuple
 
-class MobileServer {
+class MobileServer extends Server {
 
-    String ipAddress
+
     DatabaseServer databaseServer
-    Boolean master =false
+    Boolean replica =false
+
+    static hasMany = [replicas:MobileServer]
 
     static constraints = {
     }

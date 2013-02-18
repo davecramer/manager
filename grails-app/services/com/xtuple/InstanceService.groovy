@@ -1,11 +1,10 @@
 package com.xtuple
 
-import com.xtuple.DatabaseServer
-import com.xtuple.Instance
-import com.xtuple.MobileServer
-
 class InstanceService
 {
+  def sshService
+  def pgBouncerService
+  def hbaConfService
 
   def addInstance(MobileServer mobileServer)
   {
@@ -15,4 +14,24 @@ class InstanceService
   {
 
   }
+  def addOrganization(MobileServer mobileServer, Organization organization)
+  {
+    //sshService.addOrganization(mobileServer, organization)
+    DatabaseServer databaseServer = mobileServer.databaseServer
+
+    sshService.installPackages(databaseServer)
+    def poolIniFile = pgBouncerService.createIniFile( databaseServer.organizations, databaseServer )
+    sshService.updatePoolIniFile(mobileServer, poolIniFile)
+    def hbaTemplate = new File("./web-app/templates/pg_hba.conf")
+    def  hbaConfFile = hbaConfService.createHbaConf(databaseServer.organizations,mobileServer,hbaTemplate)
+    sshService.updatePgHbaConf(mobileServer,hbaConfFile)
+
+    // do workflow
+    // pgbouncer.ini file userlist.txt
+    // pg_hba.conf
+    // config.js
+    // install all software on it
+    // node, V8 on db plv8js on db
+  }
+
 }

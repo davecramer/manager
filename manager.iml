@@ -54,7 +54,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="manager-grailsPlugins" />
-    <orderEntry type="library" name="com.jcraft:jsch:0.1.49" level="project" />
+    <orderEntry type="library" exported="" name="com.jcraft:jsch:0.1.49" level="project" />
   </component>
 </module>
 
