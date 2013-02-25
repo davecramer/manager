@@ -12,12 +12,22 @@ class InstanceServiceTests
 
   @Before
   void setUp() {
-    DatabaseServer databaseServer =  new DatabaseServer(host: 'ec2-50-16-90-252.compute-1.amazonaws.com',
-            sudoUser: 'ubuntu', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem' ).save()
+    DatabaseServer databaseServer =  new DatabaseServer(host: 'ec2-174-129-105-178.compute-1.amazonaws.com',
+            sudoUser: 'ubuntu', identity: '/Users/davec/Downloads/dogfood.pem' ).save()
 
     Organization org = new Organization(name: 'foo',active: true).save()
     databaseServer.addToOrganizations(org)
+
+    def packages = ['git', 'subversion', 'pkg-config', 'postgresql-9.1',
+            'postgresql-contrib', 'build-essential', 'libssl-dev',
+            'postgresql-server-dev-9.1']
+
+    packages.each {pkg ->
+      databaseServer.addToAptPackages(pkg)
+
+    }
     databaseServer.save()
+
 
     MobileServer mobileServer =  new MobileServer(host: 'ec2-50-16-90-252.compute-1.amazonaws.com', sudoUser: 'ubuntu',
             identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem',databaseServer: databaseServer ).save()
@@ -38,5 +48,12 @@ class InstanceServiceTests
 
     instanceService.addInstance( mobileServer)
 
+  }
+  @Test
+  void testAddDeploy()
+  {
+
+    MobileServer mobileServer =  MobileServer.findByHost( 'ec2-50-16-90-252.compute-1.amazonaws.com')
+    instanceService.deploy( mobileServer )
   }
 }

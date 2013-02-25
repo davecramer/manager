@@ -11,7 +11,7 @@ import org.junit.Test
 class SshServiceTests
 {
 
-  def sshService = new SshService()
+  def sshService
 
   @Before
   void setUp() {
@@ -40,6 +40,14 @@ class SshServiceTests
     DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')
     if (sshService.executeRemote(databaseServer, 'ls -al') != 0)
       throw new Exception("test command failed")
+  }
+  @Test
+  void testMultipleComands()
+  {
+    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')
+    if (sshService.executeSudoRemote(databaseServer, ['cd /usr/local/xtuple','ls -al', 'ls']) != 0)
+      throw new Exception("test shell failed")
+
   }
   void testConfigureDatabaseServer()
   {
