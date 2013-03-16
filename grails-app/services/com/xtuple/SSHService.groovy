@@ -1,6 +1,12 @@
 package com.xtuple
 
+import org.apache.oro.text.regex.MalformedPatternException
 import com.jcraft.jsch.*
+import expect4j.Closure
+import expect4j.Expect4j
+import expect4j.ExpectState
+import expect4j.matches.Match
+import expect4j.matches.RegExpMatch
 
 class SshService
 {
@@ -25,15 +31,15 @@ class SshService
     channel.connect()
     def response
     def exitStatus = -1
-    byte[] tmp=new byte[1024];
+    byte[] tmp=new byte[1024]
     while(true){
 
       while(inputStream.available()>0){
-        int i=inputStream.read(tmp, 0, 1024);
+        int i=inputStream.read(tmp, 0, 1024)
 
-        if( i<0 ) break;
+        if( i<0 ) break
         response = new String(tmp,0,i)
-        log.debug(response);
+        log.debug(response)
       }
       if(channel.isClosed())
       {
@@ -42,10 +48,10 @@ class SshService
         {
           log.error("sudoExec exit status ${exitStatus}, response ${response}")
         }
-        System.out.println("exit-status: "+channel.getExitStatus());
-        break;
+        System.out.println("exit-status: "+channel.getExitStatus())
+        break
       }
-      try{Thread.sleep(1000);}catch(Exception ee){}
+      try{Thread.sleep(1000)}catch(Exception ee){}
     }
 
     channel.disconnect()
@@ -82,16 +88,16 @@ class SshService
 
     InputStream inputStream = channel.inputStream
     OutputStream out=channel.outputStream
-    ((ChannelExec)channel).setErrStream(errorStream);
+    ((ChannelExec)channel).setErrStream(errorStream)
 
-    channel.connect();
+    channel.connect()
 
     log.debug ( "sudoExec ${new String(((ChannelExec)channel).command) }" )
 
     if (server?.sudoPass)
     {
       out.write((server.sudoPass+"\n").getBytes())
-      out.flush();
+      out.flush()
     }
 
     out.write(contents.bytes)
@@ -100,16 +106,16 @@ class SshService
 
     def response
     def exitStatus = -1
-    byte[] tmp=new byte[1024];
+    byte[] tmp=new byte[1024]
 
     while(true){
 
       while(inputStream.available()>0){
-        int i=inputStream.read(tmp, 0, 1024);
+        int i=inputStream.read(tmp, 0, 1024)
 
-        if( i<0 ) break;
+        if( i<0 ) break
         response = new String(tmp,0,i)
-        log.debug(response);
+        log.debug(response)
       }
       if(channel.isClosed())
       {
@@ -118,10 +124,10 @@ class SshService
         {
           log.error("sudoExec exit status ${exitStatus}, response ${errorStream}")
         }
-        System.out.println("exit-status: "+channel.getExitStatus());
-        break;
+        System.out.println("exit-status: "+channel.getExitStatus())
+        break
       }
-      try{Thread.sleep(1000);}catch(Exception ee){}
+      try{Thread.sleep(1000)}catch(Exception ee){}
     }
 
     channel.disconnect()
@@ -156,30 +162,30 @@ class SshService
 
     InputStream inputStream = channel.inputStream
     OutputStream out=channel.outputStream
-    ((ChannelExec)channel).setErrStream(errorStream);
+    ((ChannelExec)channel).setErrStream(errorStream)
 
-    channel.connect();
+    channel.connect()
 
     log.debug ( "sudoExec ${new String(((ChannelExec)channel).command) }" )
 
     if (server?.sudoPass)
     {
       out.write((server.sudoPass+"\n").getBytes())
-      out.flush();
+      out.flush()
     }
 
     def response
     def exitStatus = -1
-    byte[] tmp=new byte[1024];
+    byte[] tmp=new byte[1024]
 
     while(true){
 
       while(inputStream.available()>0){
-        int i=inputStream.read(tmp, 0, 1024);
+        int i=inputStream.read(tmp, 0, 1024)
 
-        if( i<0 ) break;
+        if( i<0 ) break
         response = new String(tmp,0,i)
-        log.debug(response);
+        log.debug(response)
       }
       if(channel.isClosed())
       {
@@ -188,10 +194,10 @@ class SshService
         {
           log.error("sudoExec exit status ${exitStatus}, response ${errorStream}")
         }
-        log.debug("exit-status: "+channel.getExitStatus());
-        break;
+        log.debug("exit-status: "+channel.getExitStatus())
+        break
       }
-      try{Thread.sleep(1000);}catch(Exception ee){}
+      try{Thread.sleep(1000)}catch(Exception ee){}
     }
 
     channel.disconnect()
@@ -214,9 +220,9 @@ class SshService
 
     InputStream inputStream = execChannel.inputStream
     OutputStream out=execChannel.outputStream
-    ((ChannelExec)execChannel).setErrStream(errorStream);
+    ((ChannelExec)execChannel).setErrStream(errorStream)
 
-    execChannel.connect();
+    execChannel.connect()
 
     log.debug ( "execCommand ${new String(((ChannelExec)execChannel).command) }" )
 
@@ -224,21 +230,21 @@ class SshService
     if (sudoPass!=null)
     {
       out.write((sudoPass+"\n").getBytes())
-      out.flush();
+      out.flush()
     }
 
     def response
     def exitStatus = -1
-    byte[] tmp=new byte[1024];
+    byte[] tmp=new byte[1024]
 
     while(true){
 
       while(inputStream.available()>0){
-        int i=inputStream.read(tmp, 0, 1024);
+        int i=inputStream.read(tmp, 0, 1024)
 
-        if( i<0 ) break;
+        if( i<0 ) break
         response = new String(tmp,0,i)
-        log.debug(response);
+        log.debug(response)
       }
       if(execChannel.isClosed())
       {
@@ -247,10 +253,10 @@ class SshService
         {
           log.error("execCommand exit status ${exitStatus}, response ${errorStream}")
         }
-        log.debug("exit-status: "+execChannel.getExitStatus());
-        break;
+        log.debug("exit-status: "+execChannel.getExitStatus())
+        break
       }
-      try{Thread.sleep(1000);}catch(Exception ee){}
+      try{Thread.sleep(1000)}catch(Exception ee){}
     }
 
     execChannel.disconnect()
@@ -406,15 +412,198 @@ class SshService
     }
     // put v8 on, put plv8 on
   }
-  def restartPool(MobileServer mobileServer)
+  boolean restartPool(MobileServer mobileServer)
   {
     try {
-      return executeSudoRemote(mobileServer, "service pgbouncer restart")
+      return executeSudo(mobileServer, ["service pgbouncer restart"])
     }
     catch (Exception ex )
     {
       log.error( "Unable to add Organization ${ex.message}")
-      return -1
+      return false
     }
   }
+
+
+  private static final int COMMAND_TIMEOUT = -2
+  private static String ENTER_CHARACTER = "\n"
+  private static final int SSH_PORT = 22
+  private static String[] linuxPromptRegEx = ['~#','~\\\$']
+  def buffer = ""
+
+
+
+  public boolean execute(Server server, List<String> cmdsToExecute) {
+
+    buffer =  ""
+    Closure closure = new Closure() {
+      public void run(ExpectState expectState) throws Exception {
+        buffer += expectState.getBuffer()
+      }
+    }
+    List<Match> lstPattern =  new ArrayList<Match>()
+
+    for (String regexElement : linuxPromptRegEx) {
+      try {
+        Match mat = new RegExpMatch(regexElement, closure)
+
+        lstPattern.add(mat)
+      } catch (MalformedPatternException e) {
+        e.printStackTrace()
+      } catch(Exception e) {
+        e.printStackTrace()
+      }
+    }
+
+    Expect4j expect
+    boolean ret = false
+    try {
+      expect = getExpect4j(server)
+      for(String strCmd : cmdsToExecute) {
+        ret = isSuccess(expect, lstPattern, strCmd)
+
+      }
+
+      ret = expect.expect(lstPattern) > 0
+    } catch (Exception ex) {
+      log.error( "Exception executing command", ex)
+    } finally {
+      closeConnection(expect)
+    }
+
+    log.debug buffer.toString()
+    return ret
+  }
+
+  public boolean executeSudo(Server server, List <String> listCmds)
+  {
+
+    // put sudo in front
+    def cmdsToExecute = ['sudo -s'] + listCmds
+
+    buffer =  ""
+    Closure closure = new Closure() {
+      public void run(ExpectState expectState) throws Exception {
+        buffer += expectState.getBuffer()
+      }
+    }
+    List<Match> lstPattern =  new ArrayList<Match>()
+
+    for (String regexElement : linuxPromptRegEx) {
+      try {
+        Match mat = new RegExpMatch(regexElement, closure)
+
+        lstPattern.add(mat)
+      } catch (MalformedPatternException e) {
+        e.printStackTrace()
+      } catch(Exception e) {
+        e.printStackTrace()
+      }
+    }
+
+    Expect4j expect
+    boolean ret = false
+
+    try {
+      expect = getExpect4j(server)
+      for(String strCmd : cmdsToExecute) {
+        ret = isSuccess(expect, lstPattern, strCmd)
+      }
+
+      // did we match something
+      ret = expect.expect(lstPattern) > 0
+    } catch (Exception ex) {
+      log.error( "Exception executing command", ex)
+    } finally {
+      closeConnection(expect)
+    }
+
+    return ret
+  }
+
+  /**
+   *
+   * @param objPattern
+   * @param strCommandPattern
+   * @return
+   */
+  private boolean isSuccess(Expect4j expect, List<Match> objPattern,String strCommandPattern)
+  {
+    try
+    {
+
+
+      // did we timeout before
+      if (expect.expect(objPattern) != COMMAND_TIMEOUT) {
+        expect.send(strCommandPattern)
+        expect.send(ENTER_CHARACTER)
+        return true
+      }
+
+      return false
+    } catch (MalformedPatternException ex) {
+      ex.printStackTrace()
+      return false
+    } catch (Exception ex) {
+      ex.printStackTrace()
+      return false
+    }
+  }
+  /**
+   *
+   * @param hostname
+   * @param username
+   * @param password
+   * @param port
+   * @return
+   * @throws Exception
+   */
+  private Expect4j getExpect4j(Server server) throws Exception
+
+  {
+    JSch jsch = new JSch()
+
+    jsch.addIdentity(server.identity)
+    jsch.setKnownHosts(knownHosts)
+
+    log.debug("connecting to ${server.host} as user ${server.sudoUser}")
+
+    def session = jsch.getSession(server.sudoUser,server.host,22)
+
+
+    if (server.sudoPass != null)
+    {
+      session.setPassword(server.sudoPass)
+    }
+
+    Hashtable<String,String> config = new Hashtable<String,String>()
+    config.put("StrictHostKeyChecking", "no")
+    session.setConfig(config)
+    session.connect(60000)
+
+
+    ChannelShell channel = (ChannelShell) session.openChannel("shell")
+    Expect4j expect = new Expect4j(channel.getInputStream(), channel.getOutputStream())
+    channel.connect()
+    return expect
+  }
+  /**
+   *
+   * @param intRetVal
+   * @return
+   */
+  private boolean checkResult(int intRetVal) {
+    // this is really a timeout return
+    return intRetVal == COMMAND_TIMEOUT
+
+  }
+  /**
+   *
+   */
+  private void closeConnection(Expect4j expect) {
+    if (expect!=null) {
+      expect.close()
+    }
+  }
+
 }

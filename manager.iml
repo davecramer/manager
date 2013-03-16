@@ -55,6 +55,8 @@
     </orderEntry>
     <orderEntry type="module" module-name="manager-grailsPlugins" />
     <orderEntry type="library" exported="" name="com.jcraft:jsch:0.1.49" level="project" />
+    <orderEntry type="library" exported="" name="apache-oro:jakarta-oro:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="expect4j-1.0" level="project" />
   </component>
 </module>
 

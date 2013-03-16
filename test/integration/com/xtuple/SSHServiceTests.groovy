@@ -38,18 +38,19 @@ class SshServiceTests
   {
 
     DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')
-    if (sshService.executeRemote(databaseServer, 'ls -al') != 0)
+    if (!sshService.execute(databaseServer, ['ls -al']) )
       throw new Exception("test command failed")
   }
   @Test
   void testMultipleComands()
   {
     DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')
-    if (sshService.executeSudoRemote(databaseServer, ['cd /usr/local/xtuple','ls -al', 'ls']) != 0)
+    if (!sshService.execute(databaseServer, ['cd /usr/local/xtuple','ls -al', 'ls']))
       throw new Exception("test shell failed")
 
   }
-  void testConfigureDatabaseServer()
+
+  void xtestConfigureDatabaseServer()
   {
 
     DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')
@@ -68,7 +69,7 @@ class SshServiceTests
     if (sshService.installPackages(databaseServer) != 0)
       throw new Exception("configure Database server failed")
   }
-  void testConfigureMobileServer()
+  void xtestConfigureMobileServer()
   {
 
     MobileServer mobileServer =  MobileServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')
@@ -79,11 +80,12 @@ class SshServiceTests
       throw new Exception("configure Mobile server failed")
 
   }
+  @Test
   void testRestartPool()
   {
     MobileServer mobileServer =  MobileServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')
 
-    if ( sshService.restartPool( mobileServer ) != 0)
+    if ( sshService.restartPool( mobileServer ))
       throw new Exception("restart pool failed")
   }
   void testPutRemoteFile()

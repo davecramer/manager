@@ -11,7 +11,7 @@ class PgBouncerService
   {
     String iniFile = ""
     orgs.each { org ->
-       iniFile += "$org.name=host=$dbserver.host port=5432\n"
+       iniFile += "${org.name}=host=${dbserver.host} port=5432  pool_size=${org.connections}\n"
     }
     return iniFile
   }

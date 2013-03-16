@@ -6,7 +6,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-      /*
+
       def organization = new Organization(name: 'testorg',active: true)
 
 
@@ -28,9 +28,9 @@ class BootStrap {
       masterServer.addToReplicas(mobileServer)
       masterServer.save()
 
-      def org1 = new Organization(name: 'xtuple', active: true ).save()
-      def org2 = new Organization(name: 'evive_live', active: true ).save()
-      */
+      def org1 = new Organization(name: 'xtuple', connections: 10, active: true ).save()
+      def org2 = new Organization(name: 'evive_live', connections: 3, active: true ).save()
+
     }
     def destroy = {
     }
