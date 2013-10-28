@@ -75,6 +75,8 @@
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.42/tomcat-embed-jasper-7.0.42.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina-ant/7.0.42/tomcat-catalina-ant-7.0.42.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/bouncycastle/bcprov-jdk14/138/bcprov-jdk14-138.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/com/jcraft/jsch/0.1.49/jsch-0.1.49.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/apache-oro/jakarta-oro/2.0.8/jakarta-oro-2.0.8.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
