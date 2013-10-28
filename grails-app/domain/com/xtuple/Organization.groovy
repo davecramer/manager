@@ -8,4 +8,8 @@ class Organization
   static hasMany = [users:OrgUser]
   static constraints = {
   }
+  String toString()
+  {
+    name
+  }
 }

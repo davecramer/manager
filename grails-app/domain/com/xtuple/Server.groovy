@@ -4,11 +4,15 @@ abstract class Server
 {
   String identity
   String host
-  String sudoUser
+  String instanceId
+
+  int sshPort
+
+  String loginUser
   String sudoPass=null
 
-
   static hasMany=[aptPackages:String]
+
 
   static constraints = {
     sudoPass nullable: true
@@ -16,5 +20,10 @@ abstract class Server
    static mapping = {
      tablePerHierarchy false
    }
+
+  String toString()
+  {
+    instanceId
+  }
 
 }

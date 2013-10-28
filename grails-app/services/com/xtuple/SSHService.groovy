@@ -19,7 +19,7 @@ class SshService
     jsch.addIdentity(server.identity)
     jsch.setKnownHosts(knownHosts)
 
-    def session = jsch.getSession(server.sudoUser,server.host,22)
+    def session = jsch.getSession(server.loginUser,server.host,22)
     session.connect()
 
 
@@ -69,7 +69,7 @@ class SshService
     jsch.addIdentity(server.identity)
     jsch.setKnownHosts(knownHosts)
 
-    def session = jsch.getSession(server.sudoUser,server.host,22)
+    def session = jsch.getSession(server.loginUser,server.host,22)
     session.connect()
 
 
@@ -145,9 +145,9 @@ class SshService
     jsch.addIdentity(server.identity)
     jsch.setKnownHosts(knownHosts)
 
-    log.debug("connecting to ${server.host} as user ${server.sudoUser}")
+    log.debug("connecting to ${server.host} as user ${server.loginUser}")
 
-    def session = jsch.getSession(server.sudoUser,server.host,22)
+    def session = jsch.getSession(server.loginUser,server.host,22)
     session.connect()
 
     Channel channel = session.openChannel('exec')
@@ -272,9 +272,9 @@ class SshService
     jsch.addIdentity(server.identity)
     jsch.setKnownHosts(knownHosts)
 
-    log.debug("connecting to ${server.host} as user ${server.sudoUser}")
+    log.debug("connecting to ${server.host} as user ${server.loginUser}")
 
-    def session = jsch.getSession(server.sudoUser,server.host,22)
+    def session = jsch.getSession(server.loginUser,server.host,22)
     session.connect()
 
 
@@ -566,9 +566,9 @@ class SshService
     jsch.addIdentity(server.identity)
     jsch.setKnownHosts(knownHosts)
 
-    log.debug("connecting to ${server.host} as user ${server.sudoUser}")
+    log.debug("connecting to ${server.host} as user ${server.loginUser}")
 
-    def session = jsch.getSession(server.sudoUser,server.host,22)
+    def session = jsch.getSession(server.loginUser,server.host,22)
 
 
     if (server.sudoPass != null)
