@@ -263,6 +263,12 @@ class SshService
     return exitStatus
   }
 
+  def executeSudo(Server server, List <String> commands)
+  {
+    SshCommandRunner sshCommandRunner = new SshCommandRunner(server, commands)
+    sshCommandRunner.run()
+    sshCommandRunner.sshResult
+  }
   def executeSudoRemote(Server server, List <String> commands)
   {
     ByteArrayOutputStream errorStream
@@ -327,43 +333,7 @@ class SshService
     session.disconnect()
     return 0
   }
-  private String readToChar(Reader reader, char ch, long timeout)
-  {
-    StringBuffer stringBuffer=new StringBuffer()
-    long currentTime = System.currentTimeMillis()
 
-
-    while( true )
-    {
-
-      // keep reading as long as there is data
-      while (reader.ready() )
-      {
-         def charRead = reader.read()
-         // check for end of file or the char we are looking for
-         if ( charRead == -1 )
-         {
-           return stringBuffer.toString()
-         }
-         else
-         {
-           // move the timeout ahead on each char
-           currentTime = System.currentTimeMillis()
-           stringBuffer.append((char)charRead)
-           // we want the last char as well
-           if (charRead == ch ) return stringBuffer.toString()
-         }
-      }
-      // nothing ready so sleep for a bit
-      sleep(10)
-      // if we end up expiring return
-      if (System.currentTimeMillis() > currentTime + timeout)
-      {
-        return stringBuffer.toString()
-      }
-
-    }
-  }
 
   def addOrganization(MobileServer mobileServer, Organization organization)
   {
@@ -428,182 +398,20 @@ class SshService
   private static final int COMMAND_TIMEOUT = -2
   private static String ENTER_CHARACTER = "\n"
   private static final int SSH_PORT = 22
-  private static String[] linuxPromptRegEx = ['~#','~\\\$']
-  def buffer = ""
+  private static String[] linuxPromptRegEx = ['# ','\\\$ ']
 
 
 
-  public boolean execute(Server server, List<String> cmdsToExecute) {
-
-    buffer =  ""
-    Closure closure = new Closure() {
-      public void run(ExpectState expectState) throws Exception {
-        buffer += expectState.getBuffer()
-      }
-    }
-    List<Match> lstPattern =  new ArrayList<Match>()
-
-    for (String regexElement : linuxPromptRegEx) {
-      try {
-        Match mat = new RegExpMatch(regexElement, closure)
-
-        lstPattern.add(mat)
-      } catch (MalformedPatternException e) {
-        e.printStackTrace()
-      } catch(Exception e) {
-        e.printStackTrace()
-      }
-    }
-
-    Expect4j expect
-    boolean ret = false
-    try {
-      expect = getExpect4j(server)
-      for(String strCmd : cmdsToExecute) {
-        ret = isSuccess(expect, lstPattern, strCmd)
-
-      }
-
-      ret = expect.expect(lstPattern) > 0
-    } catch (Exception ex) {
-      log.error( "Exception executing command", ex)
-    } finally {
-      closeConnection(expect)
-    }
-
-    log.debug buffer.toString()
-    return ret
-  }
-
-  public boolean executeSudo(Server server, List <String> listCmds)
+  public SshResult execute(Server server, List<String> cmdsToExecute)
   {
 
-    // put sudo in front
-    def cmdsToExecute = ['sudo -s'] + listCmds
+    SshCommandRunner sshCommandRunner = new SshCommandRunner(server, cmdsToExecute)
+    sshCommandRunner.run()
+    sshCommandRunner.sshResult
 
-    buffer =  ""
-    Closure closure = new Closure() {
-      public void run(ExpectState expectState) throws Exception {
-        buffer += expectState.getBuffer()
-      }
-    }
-    List<Match> lstPattern =  new ArrayList<Match>()
 
-    for (String regexElement : linuxPromptRegEx) {
-      try {
-        Match mat = new RegExpMatch(regexElement, closure)
-
-        lstPattern.add(mat)
-      } catch (MalformedPatternException e) {
-        e.printStackTrace()
-      } catch(Exception e) {
-        e.printStackTrace()
-      }
-    }
-
-    Expect4j expect
-    boolean ret = false
-
-    try {
-      expect = getExpect4j(server)
-      for(String strCmd : cmdsToExecute) {
-        ret = isSuccess(expect, lstPattern, strCmd)
-      }
-
-      // did we match something
-      ret = expect.expect(lstPattern) > 0
-    } catch (Exception ex) {
-      log.error( "Exception executing command", ex)
-    } finally {
-      closeConnection(expect)
-    }
-
-    return ret
   }
 
-  /**
-   *
-   * @param objPattern
-   * @param strCommandPattern
-   * @return
-   */
-  private boolean isSuccess(Expect4j expect, List<Match> objPattern,String strCommandPattern)
-  {
-    try
-    {
 
-
-      // did we timeout before
-      if (expect.expect(objPattern) != COMMAND_TIMEOUT) {
-        expect.send(strCommandPattern)
-        expect.send(ENTER_CHARACTER)
-        return true
-      }
-
-      return false
-    } catch (MalformedPatternException ex) {
-      ex.printStackTrace()
-      return false
-    } catch (Exception ex) {
-      ex.printStackTrace()
-      return false
-    }
-  }
-  /**
-   *
-   * @param hostname
-   * @param username
-   * @param password
-   * @param port
-   * @return
-   * @throws Exception
-   */
-  private Expect4j getExpect4j(Server server) throws Exception
-
-  {
-    JSch jsch = new JSch()
-
-    jsch.addIdentity(server.identity)
-    jsch.setKnownHosts(knownHosts)
-
-    log.debug("connecting to ${server.host} as user ${server.loginUser}")
-
-    def session = jsch.getSession(server.loginUser,server.host,22)
-
-
-    if (server.sudoPass != null)
-    {
-      session.setPassword(server.sudoPass)
-    }
-
-    Hashtable<String,String> config = new Hashtable<String,String>()
-    config.put("StrictHostKeyChecking", "no")
-    session.setConfig(config)
-    session.connect(60000)
-
-
-    ChannelShell channel = (ChannelShell) session.openChannel("shell")
-    Expect4j expect = new Expect4j(channel.getInputStream(), channel.getOutputStream())
-    channel.connect()
-    return expect
-  }
-  /**
-   *
-   * @param intRetVal
-   * @return
-   */
-  private boolean checkResult(int intRetVal) {
-    // this is really a timeout return
-    return intRetVal == COMMAND_TIMEOUT
-
-  }
-  /**
-   *
-   */
-  private void closeConnection(Expect4j expect) {
-    if (expect!=null) {
-      expect.close()
-    }
-  }
 
 }

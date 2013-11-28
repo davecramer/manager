@@ -13,4 +13,8 @@ class Zone
     natInstance nullable: true
     nginxInstance nullable: true
   }
+  public String toString()
+  {
+    name
+  }
 }

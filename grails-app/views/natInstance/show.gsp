@@ -77,6 +77,17 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${natInstanceInstance?.natRules}">
+				<li class="fieldcontain">
+					<span id="natRules-label" class="property-label"><g:message code="natInstance.natRules.label" default="Nat Rules" /></span>
+					
+						<g:each in="${natInstanceInstance.natRules}" var="n">
+						<span class="property-value" aria-labelledby="natRules-label"><g:link controller="natRule" action="show" id="${n.id}">${n?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${natInstanceInstance?.sshPort}">
 				<li class="fieldcontain">
 					<span id="sshPort-label" class="property-label"><g:message code="natInstance.sshPort.label" default="Ssh Port" /></span>

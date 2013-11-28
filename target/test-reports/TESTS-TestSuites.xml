@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" hostname="daveimac" id="0" name="PgBouncerServiceTests" package="com.xtuple" tests="1" time="0.313" timestamp="2013-03-06T19:29:24">
+  <testsuite errors="0" failures="0" hostname="Daves-iMac.local" id="0" name="SshServiceTests" package="com.xtuple" tests="1" time="153761.117" timestamp="2013-11-26T21:54:53">
       <properties />
 
-      <testcase classname="com.xtuple.PgBouncerServiceTests" name="testCreateInifile" time="0.298" />
+      <testcase classname="com.xtuple.SshServiceTests" name="testGetIptables" time="153761.116" />
 
-      <system-out><![CDATA[]]></system-out>
+      <system-out><![CDATA[--Output from testGetIptables--
+]]></system-out>
 
-      <system-err><![CDATA[--Output from testCreateInifile--
+      <system-err><![CDATA[--Output from testGetIptables--
 ]]></system-err>
 
   </testsuite>

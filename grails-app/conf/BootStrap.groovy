@@ -1,6 +1,7 @@
 import com.xtuple.DatabaseServer
 import com.xtuple.MobileServer
 import com.xtuple.NatInstance
+import com.xtuple.NatRule
 import com.xtuple.NginxInstance
 import com.xtuple.Organization
 import com.xtuple.Zone
@@ -18,8 +19,12 @@ class BootStrap {
           log.debug it
         }
 
-      def natInstance = new NatInstance(instanceId: 'i-1234', name: 'ec2east', loginUser: 'ec2user', sshPort: 22, host: 'ec2east.xtuple.com', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem',
+
+      def natInstance = new NatInstance(instanceId: 'i-1234', name: 'ec2east', loginUser: 'ec2-user', sshPort: 22, host: 'ec2east.xtuple.com', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem',
       zone:zone)
+      def natRule = new NatRule(protocol: 'tcp',destIP: '10.0.0.64/32', dport: 20024, toIP: '10.0.1.239',toPort: 5434)
+      natInstance.addToNatRules(natRule)
+
       if (!natInstance.save())
         natInstance.errors.each{
           log.debug it
@@ -38,7 +43,7 @@ class BootStrap {
       zone.save()
 
 
-      def databaseServer = new DatabaseServer(instanceId: 'i-1234',host: 'ec2-50-16-90-251.compute-1.amazonaws.com', loginUser: 'ubuntu', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem' ,
+      def databaseServer = new DatabaseServer(instanceId: 'i-3642845c',host: 'ec2-54-242-174-166.compute-1.amazonaws.com', loginUser: 'ubuntu', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem' ,
       zone:zone)
       if (!databaseServer.save())
         databaseServer.errors.each {

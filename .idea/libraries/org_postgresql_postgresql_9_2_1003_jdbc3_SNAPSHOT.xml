@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.postgresql:postgresql:9.2-1003-jdbc3-SNAPSHOT" type="repository">
+    <properties maven-id="org.postgresql:postgresql:9.2-1003-jdbc3-SNAPSHOT" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/postgresql-9.2-1003-jdbc3-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -50,6 +50,14 @@
 	<g:textField name="loginUser" value="${natInstanceInstance?.loginUser}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: natInstanceInstance, field: 'natRules', 'error')} ">
+	<label for="natRules">
+		<g:message code="natInstance.natRules.label" default="Nat Rules" />
+		
+	</label>
+	<g:select name="natRules" from="${com.xtuple.NatRule.list()}" multiple="multiple" optionKey="id" size="5" value="${natInstanceInstance?.natRules*.id}" class="many-to-many"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: natInstanceInstance, field: 'sshPort', 'error')} required">
 	<label for="sshPort">
 		<g:message code="natInstance.sshPort.label" default="Ssh Port" />

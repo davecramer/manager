@@ -5,6 +5,7 @@ class NginxInstance extends Server
 
   static belongsTo = [zone:Zone]
 
+
   static constraints = {
   }
 }

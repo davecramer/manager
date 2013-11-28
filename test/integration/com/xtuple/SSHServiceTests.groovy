@@ -12,16 +12,20 @@ class SshServiceTests
 
   @Before
   void setUp() {
-    DatabaseServer databaseServer =  new DatabaseServer(host: 'ec2-50-16-90-252.compute-1.amazonaws.com',
-            loginUser: 'ubuntu', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem' ).save()
+    def zone = new Zone(name: 'US East', keyName:'/Users/davec/Downloads/ec2keys/ec2-keypair.pem' )
+    zone.save()
+    DatabaseServer databaseServer =  new DatabaseServer(host: 'ec2-54-242-174-166.compute-1.amazonaws.com',
+            loginUser: 'ubuntu', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem', zone:zone )
+    databaseServer.save()
 
-    Organization org = new Organization(name: 'foo',active: true).save()
+    Organization org = new Organization(name: 'foo',active: true,connections: 0).save()
     databaseServer.addToOrganizations(org)
     databaseServer.save()
 
-    MobileServer mobileServer =  new MobileServer(host: 'ec2-50-16-90-252.compute-1.amazonaws.com', loginUser: 'ubuntu',
-            identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem',databaseServer: databaseServer ).save()
+    MobileServer mobileServer =  new MobileServer(host: 'ec2-54-242-174-166.compute-1.amazonaws.com', loginUser: 'ubuntu',
+            identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem',databaseServer: databaseServer, zone:zone )
 
+    mobileServer.save()
     // Setup logic here
   }
 
@@ -30,23 +34,37 @@ class SshServiceTests
     // Tear down logic here
   }
 
-  @Test
+  //@Test
   void testCommand()
   {
 
-    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')
+    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-54-242-174-166.compute-1.amazonaws.com')
     if (!sshService.execute(databaseServer, ['ls -al']) )
       throw new Exception("test command failed")
   }
-  @Test
+  //@Test
   void testMultipleComands()
   {
-    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')
-    if (!sshService.execute(databaseServer, ['cd /usr/local/xtuple','ls -al', 'ls']))
+    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-54-242-174-166.compute-1.amazonaws.com')
+    SshResult sshResult = sshService.executeSudo(databaseServer, ['cd /usr/local/xtuple','ls -al', 'ls'])
+    if (!sshResult.success)
       throw new Exception("test shell failed")
 
-  }
 
+  }
+  @Test
+  void testGetIptables()
+  {
+    String buffer = ""
+    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-54-242-174-166.compute-1.amazonaws.com')
+
+    SshResult sshResult = sshService.executeSudo(databaseServer, ['iptables-save | iptables-xml'])
+    if (!sshResult.success)
+      throw new Exception("test shell failed")
+
+
+
+  }
   void xtestConfigureDatabaseServer()
   {
 
@@ -77,7 +95,7 @@ class SshServiceTests
       throw new Exception("configure Mobile server failed")
 
   }
-  @Test
+
   void testRestartPool()
   {
     MobileServer mobileServer =  MobileServer.findByHost('ec2-50-16-90-252.compute-1.amazonaws.com')

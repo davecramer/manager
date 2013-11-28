@@ -4,6 +4,8 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ZoneController {
 
+    def discoverService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -99,4 +101,10 @@ class ZoneController {
             redirect(action: "show", id: id)
         }
     }
+
+    def iptables() {
+      NatInstance.findAll().each { natInstance ->
+        discoverService.iptables(natInstance)
+      }
+  }
 }

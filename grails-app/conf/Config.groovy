@@ -92,7 +92,8 @@ log4j = {
            'net.sf.ehcache.hibernate',
            'grails.app.service.com.xtuple'
 
-    debug 'grails.app.service.com.xtuple'
+    debug 'grails.app.service.com.xtuple',
+          'expect4j'
 }
 
 // Uncomment and edit the following lines to start using Grails encoding & escaping improvements
