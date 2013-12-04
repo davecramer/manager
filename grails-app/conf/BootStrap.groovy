@@ -43,7 +43,7 @@ class BootStrap {
       zone.save()
 
 
-      def databaseServer = new DatabaseServer(instanceId: 'i-3642845c',host: 'ec2-54-242-174-166.compute-1.amazonaws.com', loginUser: 'ubuntu', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem' ,
+      def databaseServer = new DatabaseServer(instanceId: 'i-3642845c',host: 'ec2-54-208-56-185.compute-1.amazonaws.com', loginUser: 'ec2-user', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem' ,
       zone:zone)
       if (!databaseServer.save())
         databaseServer.errors.each {

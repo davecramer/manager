@@ -7,7 +7,7 @@ class Zone
 
   NatInstance natInstance
   NginxInstance nginxInstance
-  static hasMany = [databaseServers:DatabaseServer,mobileServers:MobileServer]
+  static hasMany = [databaseServers:DatabaseServer,mobileServers:MobileServer,organizations:Organization]
 
   static constraints = {
     natInstance nullable: true

@@ -23,7 +23,16 @@
 		<g:message code="zone.databaseServers.label" default="Database Servers" />
 		
 	</label>
-	<g:select name="databaseServers" from="${com.xtuple.DatabaseServer.list()}" multiple="multiple" optionKey="id" size="5" value="${zoneInstance?.databaseServers*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${zoneInstance?.databaseServers?}" var="d">
+    <li><g:link controller="databaseServer" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="databaseServer" action="create" params="['zone.id': zoneInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'databaseServer.label', default: 'DatabaseServer')])}</g:link>
+</li>
+</ul>
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: zoneInstance, field: 'keyName', 'error')} ">
@@ -39,7 +48,16 @@
 		<g:message code="zone.mobileServers.label" default="Mobile Servers" />
 		
 	</label>
-	<g:select name="mobileServers" from="${com.xtuple.MobileServer.list()}" multiple="multiple" optionKey="id" size="5" value="${zoneInstance?.mobileServers*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${zoneInstance?.mobileServers?}" var="m">
+    <li><g:link controller="mobileServer" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="mobileServer" action="create" params="['zone.id': zoneInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'mobileServer.label', default: 'MobileServer')])}</g:link>
+</li>
+</ul>
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: zoneInstance, field: 'name', 'error')} ">
@@ -48,5 +66,22 @@
 		
 	</label>
 	<g:textField name="name" value="${zoneInstance?.name}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: zoneInstance, field: 'organizations', 'error')} ">
+	<label for="organizations">
+		<g:message code="zone.organizations.label" default="Organizations" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${zoneInstance?.organizations?}" var="o">
+    <li><g:link controller="organization" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="organization" action="create" params="['zone.id': zoneInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'organization.label', default: 'Organization')])}</g:link>
+</li>
+</ul>
+
 </div>
 

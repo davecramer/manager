@@ -1,8 +1,5 @@
 package com.xtuple
 
-import org.krakenapps.iptables.impl.IptablesService
-
-
 class DiscoverService
 {
   def sshService

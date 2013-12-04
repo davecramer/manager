@@ -4,9 +4,12 @@ class Organization
 {
   String name
   Boolean active
-  int connections
-  static hasMany = [users:OrgUser]
+  Zone zone
+  MobileServer mobileServer
+  DatabaseServer databaseServer
+
   static constraints = {
+
   }
   String toString()
   {

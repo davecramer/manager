@@ -14,15 +14,15 @@ class SshServiceTests
   void setUp() {
     def zone = new Zone(name: 'US East', keyName:'/Users/davec/Downloads/ec2keys/ec2-keypair.pem' )
     zone.save()
-    DatabaseServer databaseServer =  new DatabaseServer(host: 'ec2-54-242-174-166.compute-1.amazonaws.com',
-            loginUser: 'ubuntu', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem', zone:zone )
+    DatabaseServer databaseServer =  new DatabaseServer(host: 'ec2-54-208-56-185.compute-1.amazonaws.com',
+            loginUser: 'ec2-user', identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem', zone:zone )
     databaseServer.save()
 
     Organization org = new Organization(name: 'foo',active: true,connections: 0).save()
     databaseServer.addToOrganizations(org)
     databaseServer.save()
 
-    MobileServer mobileServer =  new MobileServer(host: 'ec2-54-242-174-166.compute-1.amazonaws.com', loginUser: 'ubuntu',
+    MobileServer mobileServer =  new MobileServer(host: 'ec2-54-208-56-185.compute-1.amazonaws.com', loginUser: 'ec2-user',
             identity: '/Users/davec/Downloads/ec2keys/ec2-keypair.pem',databaseServer: databaseServer, zone:zone )
 
     mobileServer.save()
@@ -38,14 +38,14 @@ class SshServiceTests
   void testCommand()
   {
 
-    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-54-242-174-166.compute-1.amazonaws.com')
+    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-54-208-56-185.compute-1.amazonaws.com')
     if (!sshService.execute(databaseServer, ['ls -al']) )
       throw new Exception("test command failed")
   }
   //@Test
   void testMultipleComands()
   {
-    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-54-242-174-166.compute-1.amazonaws.com')
+    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-54-208-56-185.compute-1.amazonaws.com')
     SshResult sshResult = sshService.executeSudo(databaseServer, ['cd /usr/local/xtuple','ls -al', 'ls'])
     if (!sshResult.success)
       throw new Exception("test shell failed")
@@ -56,7 +56,7 @@ class SshServiceTests
   void testGetIptables()
   {
     String buffer = ""
-    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-54-242-174-166.compute-1.amazonaws.com')
+    DatabaseServer databaseServer =   DatabaseServer.findByHost('ec2-54-208-56-185.compute-1.amazonaws.com')
 
     SshResult sshResult = sshService.executeSudo(databaseServer, ['iptables-save | iptables-xml'])
     if (!sshResult.success)
