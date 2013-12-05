@@ -23,23 +23,9 @@
 			</g:if>
 			<ol class="property-list nginxInstance">
 			
-				<g:if test="${nginxInstanceInstance?.sudoPass}">
-				<li class="fieldcontain">
-					<span id="sudoPass-label" class="property-label"><g:message code="nginxInstance.sudoPass.label" default="Sudo Pass" /></span>
-					
-						<span class="property-value" aria-labelledby="sudoPass-label"><g:fieldValue bean="${nginxInstanceInstance}" field="sudoPass"/></span>
-					
-				</li>
-				</g:if>
+
 			
-				<g:if test="${nginxInstanceInstance?.aptPackages}">
-				<li class="fieldcontain">
-					<span id="aptPackages-label" class="property-label"><g:message code="nginxInstance.aptPackages.label" default="Apt Packages" /></span>
-					
-						<span class="property-value" aria-labelledby="aptPackages-label"><g:fieldValue bean="${nginxInstanceInstance}" field="aptPackages"/></span>
-					
-				</li>
-				</g:if>
+
 			
 				<g:if test="${nginxInstanceInstance?.host}">
 				<li class="fieldcontain">
@@ -76,7 +62,14 @@
 					
 				</li>
 				</g:if>
-			
+              <g:if test="${nginxInstanceInstance?.sudoPass}">
+                <li class="fieldcontain">
+                  <span id="sudoPass-label" class="property-label"><g:message code="nginxInstance.sudoPass.label" default="Sudo Pass" /></span>
+
+                  <span class="property-value" aria-labelledby="sudoPass-label"><g:fieldValue bean="${nginxInstanceInstance}" field="sudoPass"/></span>
+
+                </li>
+              </g:if>
 				<g:if test="${nginxInstanceInstance?.sshPort}">
 				<li class="fieldcontain">
 					<span id="sshPort-label" class="property-label"><g:message code="nginxInstance.sshPort.label" default="Ssh Port" /></span>

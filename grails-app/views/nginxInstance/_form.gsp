@@ -2,21 +2,8 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: nginxInstanceInstance, field: 'sudoPass', 'error')} ">
-	<label for="sudoPass">
-		<g:message code="nginxInstance.sudoPass.label" default="Sudo Pass" />
-		
-	</label>
-	<g:textField name="sudoPass" value="${nginxInstanceInstance?.sudoPass}"/>
-</div>
 
-<div class="fieldcontain ${hasErrors(bean: nginxInstanceInstance, field: 'aptPackages', 'error')} ">
-	<label for="aptPackages">
-		<g:message code="nginxInstance.aptPackages.label" default="Apt Packages" />
-		
-	</label>
-	
-</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: nginxInstanceInstance, field: 'host', 'error')} ">
 	<label for="host">
@@ -49,7 +36,13 @@
 	</label>
 	<g:textField name="loginUser" value="${nginxInstanceInstance?.loginUser}"/>
 </div>
+<div class="fieldcontain ${hasErrors(bean: nginxInstanceInstance, field: 'sudoPass', 'error')} ">
+  <label for="sudoPass">
+    <g:message code="nginxInstance.sudoPass.label" default="Sudo Pass" />
 
+  </label>
+  <g:textField name="sudoPass" value="${nginxInstanceInstance?.sudoPass}"/>
+</div>
 <div class="fieldcontain ${hasErrors(bean: nginxInstanceInstance, field: 'sshPort', 'error')} required">
 	<label for="sshPort">
 		<g:message code="nginxInstance.sshPort.label" default="Ssh Port" />

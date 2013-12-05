@@ -24,7 +24,7 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="sudoPass" title="${message(code: 'nginxInstance.sudoPass.label', default: 'Sudo Pass')}" />
+						<g:sortableColumn property="sudoPass" title="${message(code: 'nginxInstance.instanceId.label', default: 'Instance ID')}" />
 					
 						<g:sortableColumn property="host" title="${message(code: 'nginxInstance.host.label', default: 'Host')}" />
 					
@@ -40,7 +40,7 @@
 				<g:each in="${nginxInstanceInstanceList}" status="i" var="nginxInstanceInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${nginxInstanceInstance.id}">${fieldValue(bean: nginxInstanceInstance, field: "sudoPass")}</g:link></td>
+						<td><g:link action="show" id="${nginxInstanceInstance.id}">${fieldValue(bean: nginxInstanceInstance, field: "instanceId")}</g:link></td>
 					
 						<td>${fieldValue(bean: nginxInstanceInstance, field: "host")}</td>
 					
@@ -48,7 +48,7 @@
 					
 						<td>${fieldValue(bean: nginxInstanceInstance, field: "loginUser")}</td>
 					
-						<td>${fieldValue(bean: nginxInstanceInstance, field: "sshPort")}</td>
+						<td>$nginxInstanceInstance.sshPort</td>
 					
 					</tr>
 				</g:each>
