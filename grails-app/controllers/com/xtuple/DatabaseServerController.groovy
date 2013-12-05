@@ -5,7 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException
 class DatabaseServerController
 {
 
-  static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+  static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
   def index()
   {

@@ -2,21 +2,14 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: mobileServerInstance, field: 'sudoPass', 'error')} ">
-	<label for="sudoPass">
-		<g:message code="mobileServer.sudoPass.label" default="Sudo Pass" />
-		
-	</label>
-	<g:textField name="sudoPass" value="${mobileServerInstance?.sudoPass}"/>
+<div class="fieldcontain ${hasErrors(bean: mobileServerInstance, field: 'instanceId', 'error')} ">
+  <label for="instanceId">
+    <g:message code="mobileServer.instanceId.label" default="Instance Id" />
+
+  </label>
+  <g:textField name="instanceId" value="${mobileServerInstance?.instanceId}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: mobileServerInstance, field: 'aptPackages', 'error')} ">
-	<label for="aptPackages">
-		<g:message code="mobileServer.aptPackages.label" default="Apt Packages" />
-		
-	</label>
-	
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: mobileServerInstance, field: 'databaseServer', 'error')} required">
 	<label for="databaseServer">
@@ -42,13 +35,6 @@
 	<g:textField name="identity" value="${mobileServerInstance?.identity}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: mobileServerInstance, field: 'instanceId', 'error')} ">
-	<label for="instanceId">
-		<g:message code="mobileServer.instanceId.label" default="Instance Id" />
-		
-	</label>
-	<g:textField name="instanceId" value="${mobileServerInstance?.instanceId}"/>
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: mobileServerInstance, field: 'loginUser', 'error')} ">
 	<label for="loginUser">

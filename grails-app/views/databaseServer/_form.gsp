@@ -2,22 +2,6 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: databaseServerInstance, field: 'sudoPass', 'error')} ">
-	<label for="sudoPass">
-		<g:message code="databaseServer.sudoPass.label" default="Sudo Pass" />
-		
-	</label>
-	<g:textField name="sudoPass" value="${databaseServerInstance?.sudoPass}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: databaseServerInstance, field: 'aptPackages', 'error')} ">
-	<label for="aptPackages">
-		<g:message code="databaseServer.aptPackages.label" default="Apt Packages" />
-		
-	</label>
-	
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: databaseServerInstance, field: 'host', 'error')} ">
 	<label for="host">
 		<g:message code="databaseServer.host.label" default="Host" />
@@ -49,6 +33,14 @@
 	</label>
 	<g:textField name="loginUser" value="${databaseServerInstance?.loginUser}"/>
 </div>
+<div class="fieldcontain ${hasErrors(bean: databaseServerInstance, field: 'sudoPass', 'error')} ">
+  <label for="sudoPass">
+    <g:message code="databaseServer.sudoPass.label" default="Sudo Pass" />
+
+  </label>
+  <g:textField name="sudoPass" value="${databaseServerInstance?.sudoPass}"/>
+</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: databaseServerInstance, field: 'master', 'error')} ">
 	<label for="master">

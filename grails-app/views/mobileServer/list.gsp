@@ -24,7 +24,7 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="sudoPass" title="${message(code: 'mobileServer.sudoPass.label', default: 'Sudo Pass')}" />
+						<g:sortableColumn property="instanceId" title="${message(code: 'mobileServer.instanceId.label', default: 'Instance Id')}" />
 					
 						<th><g:message code="mobileServer.databaseServer.label" default="Database Server" /></th>
 					

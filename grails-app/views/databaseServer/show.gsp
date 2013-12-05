@@ -22,25 +22,16 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list databaseServer">
-			
-				<g:if test="${databaseServerInstance?.sudoPass}">
-				<li class="fieldcontain">
-					<span id="sudoPass-label" class="property-label"><g:message code="databaseServer.sudoPass.label" default="Sudo Pass" /></span>
-					
-						<span class="property-value" aria-labelledby="sudoPass-label"><g:fieldValue bean="${databaseServerInstance}" field="sudoPass"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${databaseServerInstance?.aptPackages}">
-				<li class="fieldcontain">
-					<span id="aptPackages-label" class="property-label"><g:message code="databaseServer.aptPackages.label" default="Apt Packages" /></span>
-					
-						<span class="property-value" aria-labelledby="aptPackages-label"><g:fieldValue bean="${databaseServerInstance}" field="aptPackages"/></span>
-					
-				</li>
-				</g:if>
-			
+
+
+              <g:if test="${databaseServerInstance?.instanceId}">
+                <li class="fieldcontain">
+                  <span id="instanceId-label" class="property-label"><g:message code="databaseServer.instanceId.label" default="Instance Id" /></span>
+
+                  <span class="property-value" aria-labelledby="instanceId-label"><g:fieldValue bean="${databaseServerInstance}" field="instanceId"/></span>
+
+                </li>
+              </g:if>
 				<g:if test="${databaseServerInstance?.host}">
 				<li class="fieldcontain">
 					<span id="host-label" class="property-label"><g:message code="databaseServer.host.label" default="Host" /></span>
@@ -59,14 +50,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${databaseServerInstance?.instanceId}">
-				<li class="fieldcontain">
-					<span id="instanceId-label" class="property-label"><g:message code="databaseServer.instanceId.label" default="Instance Id" /></span>
-					
-						<span class="property-value" aria-labelledby="instanceId-label"><g:fieldValue bean="${databaseServerInstance}" field="instanceId"/></span>
-					
-				</li>
-				</g:if>
+
 			
 				<g:if test="${databaseServerInstance?.loginUser}">
 				<li class="fieldcontain">

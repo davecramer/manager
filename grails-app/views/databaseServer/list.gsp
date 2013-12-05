@@ -24,7 +24,7 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="sudoPass" title="${message(code: 'databaseServer.sudoPass.label', default: 'Sudo Pass')}" />
+						<g:sortableColumn property="instanceId" title="${message(code: 'databaseServer.instanceId.label', default: 'Instance Id')}" />
 					
 						<g:sortableColumn property="host" title="${message(code: 'databaseServer.host.label', default: 'Host')}" />
 					
@@ -34,7 +34,7 @@
 					
 						<g:sortableColumn property="master" title="${message(code: 'databaseServer.master.label', default: 'Master')}" />
 					
-						<g:sortableColumn property="sshPort" title="${message(code: 'databaseServer.sshPort.label', default: 'Ssh Port')}" />
+						<g:sortableColumn property="sshPort" title="${message(code: 'databaseServer.sshPort.label', default: 'SSH Port')}" />
 					
 					</tr>
 				</thead>
@@ -42,7 +42,7 @@
 				<g:each in="${databaseServerInstanceList}" status="i" var="databaseServerInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${databaseServerInstance.id}">${fieldValue(bean: databaseServerInstance, field: "sudoPass")}</g:link></td>
+						<td><g:link action="show" id="${databaseServerInstance.id}">${fieldValue(bean: databaseServerInstance, field: "instanceId")}</g:link></td>
 					
 						<td>${fieldValue(bean: databaseServerInstance, field: "host")}</td>
 					
@@ -52,7 +52,7 @@
 					
 						<td><g:formatBoolean boolean="${databaseServerInstance.master}" /></td>
 					
-						<td>${fieldValue(bean: databaseServerInstance, field: "sshPort")}</td>
+						<td>${databaseServerInstance.sshPort}</td>
 					
 					</tr>
 				</g:each>

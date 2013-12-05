@@ -22,24 +22,15 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list mobileServer">
-			
-				<g:if test="${mobileServerInstance?.sudoPass}">
-				<li class="fieldcontain">
-					<span id="sudoPass-label" class="property-label"><g:message code="mobileServer.sudoPass.label" default="Sudo Pass" /></span>
-					
-						<span class="property-value" aria-labelledby="sudoPass-label"><g:fieldValue bean="${mobileServerInstance}" field="sudoPass"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${mobileServerInstance?.aptPackages}">
-				<li class="fieldcontain">
-					<span id="aptPackages-label" class="property-label"><g:message code="mobileServer.aptPackages.label" default="Apt Packages" /></span>
-					
-						<span class="property-value" aria-labelledby="aptPackages-label"><g:fieldValue bean="${mobileServerInstance}" field="aptPackages"/></span>
-					
-				</li>
-				</g:if>
+
+              <g:if test="${mobileServerInstance?.instanceId}">
+                <li class="fieldcontain">
+                  <span id="instanceId-label" class="property-label"><g:message code="mobileServer.instanceId.label" default="Instance Id" /></span>
+
+                  <span class="property-value" aria-labelledby="instanceId-label"><g:fieldValue bean="${mobileServerInstance}" field="instanceId"/></span>
+
+                </li>
+              </g:if>
 			
 				<g:if test="${mobileServerInstance?.databaseServer}">
 				<li class="fieldcontain">
@@ -68,14 +59,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${mobileServerInstance?.instanceId}">
-				<li class="fieldcontain">
-					<span id="instanceId-label" class="property-label"><g:message code="mobileServer.instanceId.label" default="Instance Id" /></span>
-					
-						<span class="property-value" aria-labelledby="instanceId-label"><g:fieldValue bean="${mobileServerInstance}" field="instanceId"/></span>
-					
-				</li>
-				</g:if>
+
 			
 				<g:if test="${mobileServerInstance?.loginUser}">
 				<li class="fieldcontain">
