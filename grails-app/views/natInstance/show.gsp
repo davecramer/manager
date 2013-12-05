@@ -23,23 +23,8 @@
 			</g:if>
 			<ol class="property-list natInstance">
 			
-				<g:if test="${natInstanceInstance?.sudoPass}">
-				<li class="fieldcontain">
-					<span id="sudoPass-label" class="property-label"><g:message code="natInstance.sudoPass.label" default="Sudo Pass" /></span>
-					
-						<span class="property-value" aria-labelledby="sudoPass-label"><g:fieldValue bean="${natInstanceInstance}" field="sudoPass"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${natInstanceInstance?.aptPackages}">
-				<li class="fieldcontain">
-					<span id="aptPackages-label" class="property-label"><g:message code="natInstance.aptPackages.label" default="Apt Packages" /></span>
-					
-						<span class="property-value" aria-labelledby="aptPackages-label"><g:fieldValue bean="${natInstanceInstance}" field="aptPackages"/></span>
-					
-				</li>
-				</g:if>
+
+
 			
 				<g:if test="${natInstanceInstance?.host}">
 				<li class="fieldcontain">
@@ -76,7 +61,15 @@
 					
 				</li>
 				</g:if>
-			
+              <g:if test="${natInstanceInstance?.sudoPass}">
+                <li class="fieldcontain">
+                  <span id="sudoPass-label" class="property-label"><g:message code="natInstance.sudoPass.label" default="Sudo Pass" /></span>
+
+                  <span class="property-value" aria-labelledby="sudoPass-label"><g:fieldValue bean="${natInstanceInstance}" field="sudoPass"/></span>
+
+                </li>
+              </g:if>
+
 				<g:if test="${natInstanceInstance?.natRules}">
 				<li class="fieldcontain">
 					<span id="natRules-label" class="property-label"><g:message code="natInstance.natRules.label" default="Nat Rules" /></span>

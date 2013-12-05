@@ -2,21 +2,6 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: natInstanceInstance, field: 'sudoPass', 'error')} ">
-	<label for="sudoPass">
-		<g:message code="natInstance.sudoPass.label" default="Sudo Pass" />
-		
-	</label>
-	<g:textField name="sudoPass" value="${natInstanceInstance?.sudoPass}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: natInstanceInstance, field: 'aptPackages', 'error')} ">
-	<label for="aptPackages">
-		<g:message code="natInstance.aptPackages.label" default="Apt Packages" />
-		
-	</label>
-	
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: natInstanceInstance, field: 'host', 'error')} ">
 	<label for="host">
@@ -49,6 +34,14 @@
 	</label>
 	<g:textField name="loginUser" value="${natInstanceInstance?.loginUser}"/>
 </div>
+<div class="fieldcontain ${hasErrors(bean: natInstanceInstance, field: 'sudoPass', 'error')} ">
+  <label for="sudoPass">
+    <g:message code="natInstance.sudoPass.label" default="Sudo Pass" />
+
+  </label>
+  <g:textField name="sudoPass" value="${natInstanceInstance?.sudoPass}"/>
+</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: natInstanceInstance, field: 'natRules', 'error')} ">
 	<label for="natRules">

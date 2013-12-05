@@ -89,8 +89,8 @@
     <orderEntry type="library" exported="" name="com.jcraft:jsch:0.1.49" level="project" />
     <orderEntry type="library" exported="" name="apache-oro:jakarta-oro:2.0.8" level="project" />
     <orderEntry type="library" exported="" name="expect4j-1.0" level="project" />
-    <orderEntry type="library" name="grails-2.3.1" level="application" />
     <orderEntry type="library" scope="TEST" name="org.postgresql:postgresql:9.2-1003-jdbc3-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="grails-2.3.4" level="application" />
   </component>
 </module>
 
