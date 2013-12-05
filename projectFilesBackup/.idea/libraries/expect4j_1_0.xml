@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="expect4j-1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/expect4j-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/tools/expect4j/src/main/java" />
+    </SOURCES>
+  </library>
+</component>

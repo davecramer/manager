@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="apache-oro:jakarta-oro:2.0.8" type="repository">
+    <properties maven-id="apache-oro:jakarta-oro:2.0.8" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jakarta-oro-2.0.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
