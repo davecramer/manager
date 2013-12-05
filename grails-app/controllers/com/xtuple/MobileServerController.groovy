@@ -5,7 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException
 class MobileServerController
 {
 
-  static allowedMethods = [save: "POST", update: "PUT", delete: "EDIT"]
+  static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
   def index()
   {
