@@ -24,7 +24,7 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="sudoPass" title="${message(code: 'natInstance.sudoPass.label', default: 'Sudo Pass')}" />
+						<g:sortableColumn property="instanceId" title="${message(code: 'natInstance.instanceId.label', default: 'InstanceId')}" />
 					
 						<g:sortableColumn property="host" title="${message(code: 'natInstance.host.label', default: 'Host')}" />
 					
@@ -40,7 +40,7 @@
 				<g:each in="${natInstanceInstanceList}" status="i" var="natInstanceInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${natInstanceInstance.id}">${fieldValue(bean: natInstanceInstance, field: "sudoPass")}</g:link></td>
+						<td><g:link action="show" id="${natInstanceInstance.id}">${fieldValue(bean: natInstanceInstance, field: "instanceId")}</g:link></td>
 					
 						<td>${fieldValue(bean: natInstanceInstance, field: "host")}</td>
 					
