@@ -48,7 +48,7 @@
 					
 						<td>${fieldValue(bean: nginxInstanceInstance, field: "loginUser")}</td>
 					
-						<td>$nginxInstanceInstance.sshPort</td>
+						<td>${nginxInstanceInstance.sshPort}</td>
 					
 					</tr>
 				</g:each>
