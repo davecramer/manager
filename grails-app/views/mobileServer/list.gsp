@@ -42,7 +42,7 @@
 				<g:each in="${mobileServerInstanceList}" status="i" var="mobileServerInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${mobileServerInstance.id}">${fieldValue(bean: mobileServerInstance, field: "sudoPass")}</g:link></td>
+						<td><g:link action="show" id="${mobileServerInstance.id}">${fieldValue(bean: mobileServerInstance, field: "instanceId")}</g:link></td>
 					
 						<td>${fieldValue(bean: mobileServerInstance, field: "databaseServer")}</td>
 					
