@@ -8,4 +8,8 @@ class NginxInstance extends Server
 
   static constraints = {
   }
+  public String toString()
+  {
+    instanceId
+  }
 }
