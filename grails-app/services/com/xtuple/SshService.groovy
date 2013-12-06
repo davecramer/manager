@@ -76,10 +76,6 @@ class SshService
     Channel channel = session.openChannel('exec')
 
     def getPassword = ""
-    if (server?.sudoPass)
-    {
-      getPassword = "-S -p '' "
-    }
     def redirection = '>'
     if (append) redirection = '>>'
     def command = "sh -c 'cat ${redirection} ${target}'"
@@ -94,11 +90,6 @@ class SshService
 
     log.debug ( "sudoExec ${new String(((ChannelExec)channel).command) }" )
 
-    if (server?.sudoPass)
-    {
-      out.write((server.sudoPass+"\n").getBytes())
-      out.flush()
-    }
 
     out.write(contents.bytes)
     out.flush()
@@ -153,10 +144,7 @@ class SshService
     Channel channel = session.openChannel('exec')
 
     def getPassword = ""
-    if (server?.sudoPass)
-    {
-      getPassword = "-S -p '' "
-    }
+
     ((ChannelExec) channel).setCommand( "sudo ${getPassword} ${command}" )
 
 
@@ -168,11 +156,6 @@ class SshService
 
     log.debug ( "sudoExec ${new String(((ChannelExec)channel).command) }" )
 
-    if (server?.sudoPass)
-    {
-      out.write((server.sudoPass+"\n").getBytes())
-      out.flush()
-    }
 
     def response
     def exitStatus = -1
@@ -204,16 +187,12 @@ class SshService
     session.disconnect()
     return exitStatus
   }
-  def execCommand(Session session, String sudoPass, OutputStream errorStream, String command)
+  def execCommand(Session session,  OutputStream errorStream, String command)
   {
 
     Channel execChannel = session.openChannel('exec')
 
     def getPassword = ""
-    if (sudoPass != null)
-    {
-      getPassword = "-S -p '' "
-    }
     ((ChannelExec) execChannel).setCommand( "sudo ${getPassword} ${command}" )
 
 
@@ -226,12 +205,6 @@ class SshService
 
     log.debug ( "execCommand ${new String(((ChannelExec)execChannel).command) }" )
 
-
-    if (sudoPass!=null)
-    {
-      out.write((sudoPass+"\n").getBytes())
-      out.flush()
-    }
 
     def response
     def exitStatus = -1

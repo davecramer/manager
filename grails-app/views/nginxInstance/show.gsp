@@ -62,11 +62,11 @@
 					
 				</li>
 				</g:if>
-              <g:if test="${nginxInstanceInstance?.sudoPass}">
+              <g:if test="${nginxInstanceInstance?.ipAddress}">
                 <li class="fieldcontain">
-                  <span id="sudoPass-label" class="property-label"><g:message code="nginxInstance.sudoPass.label" default="Sudo Pass" /></span>
+                  <span id="ipAddress-label" class="property-label"><g:message code="nginxInstance.ipAddress.label" default="IP Address" /></span>
 
-                  <span class="property-value" aria-labelledby="sudoPass-label"><g:fieldValue bean="${nginxInstanceInstance}" field="sudoPass"/></span>
+                  <span class="property-value" aria-labelledby="ipAddress-label"><g:fieldValue bean="${nginxInstanceInstance}" field="ipAddress"/></span>
 
                 </li>
               </g:if>

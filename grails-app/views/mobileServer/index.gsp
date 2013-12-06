@@ -27,8 +27,8 @@
     <thead>
     <tr>
 
-      <g:sortableColumn property="sudoPass"
-                        title="${message(code: 'mobileServer.sudoPass.label', default: 'Sudo Pass')}"/>
+      <g:sortableColumn property="ipAddress"
+                        title="${message(code: 'mobileServer.ipAddress.label', default: 'IP Address')}"/>
 
       <th><g:message code="mobileServer.databaseServer.label" default="Database Server"/></th>
 
@@ -50,7 +50,7 @@
       <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
         <td><g:link action="show"
-                    id="${mobileServerInstance.id}">${fieldValue(bean: mobileServerInstance, field: "sudoPass")}</g:link></td>
+                    id="${mobileServerInstance.id}">${fieldValue(bean: mobileServerInstance, field: "ipAddress")}</g:link></td>
 
         <td>${fieldValue(bean: mobileServerInstance, field: "databaseServer")}</td>
 

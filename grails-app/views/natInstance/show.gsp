@@ -61,11 +61,11 @@
 					
 				</li>
 				</g:if>
-              <g:if test="${natInstanceInstance?.sudoPass}">
+              <g:if test="${natInstanceInstance?.ipAddress}">
                 <li class="fieldcontain">
-                  <span id="sudoPass-label" class="property-label"><g:message code="natInstance.sudoPass.label" default="Sudo Pass" /></span>
+                  <span id="ipAddress-label" class="property-label"><g:message code="natInstance.ipAddress.label" default="IP Address" /></span>
 
-                  <span class="property-value" aria-labelledby="sudoPass-label"><g:fieldValue bean="${natInstanceInstance}" field="sudoPass"/></span>
+                  <span class="property-value" aria-labelledby="ipAddress-label"><g:fieldValue bean="${natInstanceInstance}" field="ipAddress"/></span>
 
                 </li>
               </g:if>

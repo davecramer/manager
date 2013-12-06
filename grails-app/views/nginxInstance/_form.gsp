@@ -36,12 +36,12 @@
 	</label>
 	<g:textField name="loginUser" value="${nginxInstanceInstance?.loginUser}"/>
 </div>
-<div class="fieldcontain ${hasErrors(bean: nginxInstanceInstance, field: 'sudoPass', 'error')} ">
-  <label for="sudoPass">
-    <g:message code="nginxInstance.sudoPass.label" default="Sudo Pass" />
+<div class="fieldcontain ${hasErrors(bean: nginxInstanceInstance, field: 'ipAddress', 'error')} ">
+  <label for="ipAddress">
+    <g:message code="nginxInstance.ipAddress.label" default="IP Address" />
 
   </label>
-  <g:textField name="sudoPass" value="${nginxInstanceInstance?.sudoPass}"/>
+  <g:textField name="ipAddress" value="${nginxInstanceInstance?.ipAddress}"/>
 </div>
 <div class="fieldcontain ${hasErrors(bean: nginxInstanceInstance, field: 'sshPort', 'error')} required">
 	<label for="sshPort">

@@ -24,7 +24,7 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="sudoPass" title="${message(code: 'nginxInstance.instanceId.label', default: 'Instance ID')}" />
+						<g:sortableColumn property="ipAddress" title="${message(code: 'nginxInstance.instanceId.label', default: 'Instance ID')}" />
 					
 						<g:sortableColumn property="host" title="${message(code: 'nginxInstance.host.label', default: 'Host')}" />
 					

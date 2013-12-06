@@ -152,10 +152,7 @@ class SshCommandRunner implements Runnable
     def session = jsch.getSession(server.loginUser,server.host,22)
 
 
-    if (server.sudoPass != null)
-    {
-      session.setPassword(server.sudoPass)
-    }
+
 
     Hashtable<String,String> config = new Hashtable<String,String>()
     config.put("StrictHostKeyChecking", "no")

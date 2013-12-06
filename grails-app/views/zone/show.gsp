@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="natInstance-label" class="property-label"><g:message code="zone.natInstance.label" default="Nat Instance" /></span>
 					
-						<span class="property-value" aria-labelledby="natInstance-label"><g:link controller="natInstance" action="show" id="${zoneInstance?.natInstance?.id}">${zoneInstance?.natInstance?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="natInstance-label"><g:link controller="natInstance" action="show" id="${zoneInstance?.natInstance?.id}">${zoneInstance?.natInstance?.instanceId?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="nginxInstance-label" class="property-label"><g:message code="zone.nginxInstance.label" default="Nginx Instance" /></span>
 					
-						<span class="property-value" aria-labelledby="nginxInstance-label"><g:link controller="nginxInstance" action="show" id="${zoneInstance?.nginxInstance?.id}">${zoneInstance?.nginxInstance?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="nginxInstance-label"><g:link controller="nginxInstance" action="show" id="${zoneInstance?.nginxInstance?.id}">${zoneInstance?.nginxInstance?.instanceId?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -46,7 +46,7 @@
 					<span id="databaseServers-label" class="property-label"><g:message code="zone.databaseServers.label" default="Database Servers" /></span>
 					
 						<g:each in="${zoneInstance.databaseServers}" var="d">
-						<span class="property-value" aria-labelledby="databaseServers-label"><g:link controller="databaseServer" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="databaseServers-label"><g:link controller="databaseServer" action="show" id="${d.id}">${d?.instanceId?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -66,7 +66,7 @@
 					<span id="mobileServers-label" class="property-label"><g:message code="zone.mobileServers.label" default="Mobile Servers" /></span>
 					
 						<g:each in="${zoneInstance.mobileServers}" var="m">
-						<span class="property-value" aria-labelledby="mobileServers-label"><g:link controller="mobileServer" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="mobileServers-label"><g:link controller="mobileServer" action="show" id="${m.id}">${m?.instanceId?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

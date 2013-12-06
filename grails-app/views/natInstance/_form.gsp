@@ -34,12 +34,12 @@
 	</label>
 	<g:textField name="loginUser" value="${natInstanceInstance?.loginUser}"/>
 </div>
-<div class="fieldcontain ${hasErrors(bean: natInstanceInstance, field: 'sudoPass', 'error')} ">
-  <label for="sudoPass">
-    <g:message code="natInstance.sudoPass.label" default="Sudo Pass" />
+<div class="fieldcontain ${hasErrors(bean: natInstanceInstance, field: 'ipAddress', 'error')} ">
+  <label for="ipAddress">
+    <g:message code="natInstance.ipAddress.label" default="IP Address" />
 
   </label>
-  <g:textField name="sudoPass" value="${natInstanceInstance?.sudoPass}"/>
+  <g:textField name="ipAddress" value="${natInstanceInstance?.ipAddress}"/>
 </div>
 
 

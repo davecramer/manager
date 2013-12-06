@@ -5,17 +5,17 @@ abstract class Server
   String identity
   String host
   String instanceId
+  String ipAddress
 
   int sshPort
 
   String loginUser
-  String sudoPass=null
 
   static hasMany=[aptPackages:String]
 
 
   static constraints = {
-    sudoPass nullable: true
+    ipAddress nullable: true
   }
    static mapping = {
      tablePerHierarchy false

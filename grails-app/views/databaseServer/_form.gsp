@@ -33,12 +33,12 @@
 	</label>
 	<g:textField name="loginUser" value="${databaseServerInstance?.loginUser}"/>
 </div>
-<div class="fieldcontain ${hasErrors(bean: databaseServerInstance, field: 'sudoPass', 'error')} ">
-  <label for="sudoPass">
-    <g:message code="databaseServer.sudoPass.label" default="Sudo Pass" />
+<div class="fieldcontain ${hasErrors(bean: databaseServerInstance, field: 'ipAddress', 'error')} ">
+  <label for="ipAddress">
+    <g:message code="databaseServer.ipAddress.label" default="IP Address" />
 
   </label>
-  <g:textField name="sudoPass" value="${databaseServerInstance?.sudoPass}"/>
+  <g:textField name="ipAddress" value="${databaseServerInstance?.ipAddress}"/>
 </div>
 
 

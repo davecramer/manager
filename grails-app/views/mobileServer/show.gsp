@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="databaseServer-label" class="property-label"><g:message code="mobileServer.databaseServer.label" default="Database Server" /></span>
 					
-						<span class="property-value" aria-labelledby="databaseServer-label"><g:link controller="databaseServer" action="show" id="${mobileServerInstance?.databaseServer?.id}">${mobileServerInstance?.databaseServer?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="databaseServer-label"><g:link controller="databaseServer" action="show" id="${mobileServerInstance?.databaseServer?.id}">${mobileServerInstance?.databaseServer?.instanceId?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
