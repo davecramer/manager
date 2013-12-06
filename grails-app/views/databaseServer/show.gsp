@@ -85,7 +85,7 @@
 				<li class="fieldcontain">
 					<span id="sshPort-label" class="property-label"><g:message code="databaseServer.sshPort.label" default="Ssh Port" /></span>
 					
-						<span class="property-value" aria-labelledby="sshPort-label"><g:fieldValue bean="${databaseServerInstance}" field="sshPort"/></span>
+						<span class="property-value" aria-labelledby="sshPort-label">${databaseServerInstance.sshPort}</span>
 					
 				</li>
 				</g:if>
