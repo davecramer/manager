@@ -21,9 +21,6 @@ abstract class Server
      tablePerHierarchy false
    }
 
-  String toString()
-  {
-    instanceId
-  }
+
 
 }

@@ -9,4 +9,8 @@ class DatabaseServer extends Server
 
   static constraints = {
   }
+  public String toString()
+  {
+    instanceId
+  }
 }

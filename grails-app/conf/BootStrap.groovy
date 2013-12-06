@@ -10,7 +10,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-
+    /*
       def organization = new Organization(name: 'testorg',active: true)
 
       def zone = new Zone(name: 'US East', keyName:'/Users/davec/Downloads/ec2keys/ec2-keypair.pem' )
@@ -111,7 +111,7 @@ class BootStrap {
 
       def org1 = new Organization(name: 'xtuple', connections: 10, active: true ).save()
       def org2 = new Organization(name: 'evive_live', connections: 3, active: true ).save()
-
+     */
     }
     def destroy = {
     }
